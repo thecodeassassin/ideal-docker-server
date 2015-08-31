@@ -1,0 +1,7 @@
+---
+- name: Build Docker images from Dockerfiles.
+  docker_image:
+    name: "{{ item.name }}"
+    tag: "{{ item.tag }}"
+    path: "/vagrant/provisioning/{{ item.directory }}"
+    state: build

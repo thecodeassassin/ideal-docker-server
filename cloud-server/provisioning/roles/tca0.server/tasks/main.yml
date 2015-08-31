@@ -1,0 +1,8 @@
+# Basic role for all tca0 servers
+
+# Add user stephen
+- user: name=stephen shell=/bin/bash groups=users append=yes
+
+- name: Add ssh keys
+  authorized_key: user=stephen key=http://github.com/thecodeassassin.keys
+

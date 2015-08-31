@@ -1,0 +1,10 @@
+---
+- hosts: all
+  sudo: yes
+
+  roles:
+    - role: tca0.server
+
+  tasks:
+    - include: setup.yml
+   # - include: docker.yml
