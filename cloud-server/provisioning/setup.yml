@@ -22,6 +22,9 @@
 - name: Add docker group
   group: name=docker state=present
 
+- name: Install tools
+  yum: name=htop,vim state=present
+
 - name: Add vagrant user to docker group.
   user:
     name: vagrant
