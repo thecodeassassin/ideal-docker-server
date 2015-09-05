@@ -32,7 +32,7 @@
     append: yes
   sudo: yes
 
-- name: Add user stephen to docker group.
+- name: Add user stephen to docker group and change password
   user:
     name: stephen
     groups: docker

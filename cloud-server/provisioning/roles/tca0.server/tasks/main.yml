@@ -1,8 +1,25 @@
 # Basic role for all tca0 servers
 
-# Add user stephen
-- user: name=stephen shell=/bin/bash groups=users append=yes
+# make sure group sudo exists
+- group: name=sudo state=present
+
+# copy templates
+- name: Copy templates
+  template: src=sudoers dest=/etc/sudoers validate='visudo -cf %s'
+  template: src=sshd_config dest=/etc/ssh/sshd_config
+
+- name: Add user stephen 
+  user:
+   name: stephen
+   shell: /bin/bash
+   groups: users,sudo
+   append: yes
+   update_password: always
+   password: $6$rounds=656000$mdqxJFPRhC9N1v8n$bpNh7vWq1fy1ZEQg5HSf4S39.CjHrJcqCVQRpbghtj3uoFwW.t6sKe5TtsIXf4t569wWuUChLsf7bwTAYB9sR0
+
 
 - name: Add ssh keys
   authorized_key: user=stephen key=http://github.com/thecodeassassin.keys
 
+- set_fact:
+     one_fact: something
